@@ -1,16 +1,26 @@
 #include "ProductManager.hpp"
 
+ProductManager::ProductManager(){}
+ProductManager::~ProductManager(){}
+
 void ProductManager::addProduct(const Product& product) {
-	// implementacja dodawania produktu
-	// obs³uga wyj¹tków w przypadku konfliktu ID
+    products.push_back(product);
 }
 void ProductManager::removeProduct(int id) {
-	// implementacja usuwania produktu
-	// obs³uga wyj¹tków w przypadku braku produktu o podanym ID
+    for (auto it = products.begin(); it != products.end(); ++it) //poruszanie siê po wektorze za pomoc¹ iteratora
+    {
+        if (it->get_id() == id) {
+            products.erase(it);
+            break;
+        }
+    }
 }
-void ProductManager::displayProducts() {
-	// implementacja wyœwietlania produktów
-	// wykorzystanie RTTI do okreœlenia typu obiektów
+void ProductManager::displayProducts() const {
+    std::cout << "Lista produktów:\n";
+    for (const auto& product : products) 
+    {
+        std::cout << "ID: " << product.get_id()<< ", Nazwa: " << product.get_name()<< ", Cena: " << product.get_price() << " z³\n";
+    }
 }
 void ProductManager::saveToFile(const std::string& filename) {
 	// implementacja zapisu do pliku binarnego
