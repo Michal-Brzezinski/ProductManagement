@@ -7,11 +7,13 @@
 #include <stdexcept>
 #include <typeinfo>
 #include <iostream>
+#include<algorithm>
 
 
 class ProductManager {
 private:
 	std::vector<Product> products;
+	std::vector<Product> prod_loading;
 public:
 	ProductManager();
 	~ProductManager();
